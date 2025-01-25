@@ -9,6 +9,21 @@ const SignUp = () => {
     password: "",
   });
 
+  // useEffect(() => {
+  //   const auth = localStorage.getItem("user");
+  //   if (auth) {
+  //     navigate("/");
+  //     return null;
+  //   }
+  // }, []);
+
+  const auth = localStorage.getItem("user");
+
+  if (auth) {
+    navigate("/");
+    return <h1>You are already signed In</h1> 
+  }
+
   const handleInput = (e) => {
     let { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -29,6 +44,7 @@ const SignUp = () => {
       }
 
       const result = await response.json();
+      localStorage.setItem("user", JSON.stringify(result));
       if (result) {
         navigate("/");
       }
