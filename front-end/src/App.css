@@ -31,3 +31,35 @@
   padding: 12px;
 }
 /*--- styles for footer end ---*/
+
+/*--- styles for signup page start---*/
+
+.signUpWrapper {
+  padding-top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fieldWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.signUpWrapper .fieldWrapper .inputField {
+  border: 1px solid rgb(168, 179, 177);
+  border-radius: 6px;
+  padding: 4px;
+  width: 400px;
+}
+
+.signUpWrapper .fieldWrapper .signUpBtn {
+  padding: 4px;
+  border: none;
+  outline: none;
+  background-color: rgb(162, 162, 235);
+  border-radius: 4px;
+  cursor: pointer;
+}
+/*--- styles for signup page end---*/
