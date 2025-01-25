@@ -9,6 +9,8 @@ const Nav = () => {
       <Link to={"/update"} className="navItem">Update Product</Link>
       <Link to={"/logout"} className="navItem">Logout</Link>
       <Link to={"/profile"} className="navItem">Profile</Link>
+      <Link to={"/signUp"} className="navItem">Sign up</Link>
+
     </div>
   );
 };
