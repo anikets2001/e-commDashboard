@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -12,8 +14,27 @@ const SignUp = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSignUp = () => {
-    console.log("formData:", formData);
+  const handleSignUp = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      if (result) {
+        navigate("/");
+      }
+    } catch (error) {
+      console.error("Error during sign-up:", error);
+    }
   };
 
   return (
