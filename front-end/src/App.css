@@ -34,7 +34,7 @@
 
 /*--- styles for signup page start---*/
 
-.signUpWrapper {
+.formWrapper {
   padding-top: 24px;
   display: flex;
   align-items: center;
@@ -47,14 +47,14 @@
   gap: 16px;
 }
 
-.signUpWrapper .fieldWrapper .inputField {
+.formWrapper .fieldWrapper .inputField {
   border: 1px solid rgb(168, 179, 177);
   border-radius: 6px;
   padding: 4px;
   width: 400px;
 }
 
-.signUpWrapper .fieldWrapper .signUpBtn {
+.formWrapper .fieldWrapper .signUpBtn {
   padding: 4px;
   border: none;
   outline: none;

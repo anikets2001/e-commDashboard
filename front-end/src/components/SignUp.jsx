@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
@@ -17,12 +17,14 @@ const SignUp = () => {
   //   }
   // }, []);
 
-  const auth = localStorage.getItem("user");
+  useEffect(() => {
+    const auth = localStorage.getItem("user");
 
-  if (auth) {
-    navigate("/");
-    return <h1>You are already signed In</h1> 
-  }
+    if (auth) {
+      navigate("/");
+      return <h1>You are already signed In</h1>;
+    }
+  },[]);
 
   const handleInput = (e) => {
     let { name, value } = e.target;
@@ -54,7 +56,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="signUpWrapper">
+    <div className="formWrapper">
       <div className="fieldWrapper">
         <h1>Register</h1>
         <input
