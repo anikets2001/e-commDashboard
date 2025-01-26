@@ -1,8 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Nav = () => {
+  const navigate = useNavigate;
   const auth = localStorage.getItem("user");
+
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/signUp");
+  };
   return (
     <div className="navWrapper">
       <Link to={"/"} className="navItem">
@@ -14,18 +20,32 @@ const Nav = () => {
       <Link to={"/update"} className="navItem">
         Update Product
       </Link>
-
       <Link to={"/profile"} className="navItem">
         Profile
       </Link>
-      {auth ? (
-        <Link to={"/logout"} className="navItem">
+      {/* {auth ? (
+        <Link to={"/signUp"} className="navItem" onClick={handleLogout}>
           Logout
         </Link>
       ) : (
         <Link to={"/signUp"} className="navItem">
           Sign up
         </Link>
+      )} */}
+
+      {auth ? (
+        <Link to={"/signUp"} className="navItem" onClick={handleLogout}>
+          Logout
+        </Link>
+      ) : (
+        <>
+          <Link to={"/signUp"} className="navItem">
+            Sign up
+          </Link>{" "}
+          <Link to={"/login"} className="navItem">
+            Login
+          </Link>
+        </>
       )}
     </div>
   );
