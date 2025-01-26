@@ -25,8 +25,11 @@ const Nav = () => {
           <Link to={"/"} className="navItem">
             Home
           </Link>
-          <Link to={"/add"} className="navItem">
+          <Link to={"/addProduct"} className="navItem">
             Add Product
+          </Link>
+          <Link to={"/products"} className="navItem">
+            Products
           </Link>
           <Link to={"/update"} className="navItem">
             Update Product

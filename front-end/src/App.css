@@ -62,4 +62,26 @@
   border-radius: 4px;
   cursor: pointer;
 }
+
+.err-text {
+  margin-top: -15px;
+  color: red;
+  font-size: 12px;
+  text-align: end;
+}
 /*--- styles for signup page end---*/
+
+/*--- styles for products list page start---*/
+.products-wrapper {
+  display: flex;
+  padding: 16px;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.products-wrapper .product-wrapper {
+  padding: 8px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 8px;
+}
+/*--- styles for products list page end---*/
