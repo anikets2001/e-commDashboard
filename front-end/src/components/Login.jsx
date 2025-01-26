@@ -3,7 +3,10 @@ import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
 
   // useEffect(() => {
   //   const auth = localStorage.getItem("user");
