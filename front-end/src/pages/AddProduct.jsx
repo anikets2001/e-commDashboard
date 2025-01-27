@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
+  const navigate = useNavigate();
   const [error, setError] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -8,6 +10,7 @@ const AddProduct = () => {
     category: "",
     company: "",
   });
+  const { name, price, category, company } = formData;
 
   const handleInput = (e) => {
     const { name, value } = e.target;
@@ -16,12 +19,7 @@ const AddProduct = () => {
 
   const handleAddProduct = async () => {
     // form validation
-    if (
-      !formData.name ||
-      !formData.price ||
-      !formData.category ||
-      !formData.company
-    ) {
+    if (!name || !price || !category || !company) {
       setError(true);
       return;
     }
@@ -45,11 +43,14 @@ const AddProduct = () => {
       }
 
       const result = await response.json();
-      console.log(result);
+      if (result) {
+        navigate("/");
+      }
     } catch (err) {
       console.error(err);
     }
   };
+
   return (
     <div className="formWrapper">
       <div className="fieldWrapper">
@@ -61,9 +62,7 @@ const AddProduct = () => {
           placeholder="Enter product Name"
           onChange={(e) => handleInput(e)}
         />
-        {error && !formData.name && (
-          <span className="err-text">Enter Valid Name</span>
-        )}
+        {error && !name && <span className="err-text">Enter Valid Name</span>}
         <input
           className="inputField"
           name="price"
@@ -71,9 +70,7 @@ const AddProduct = () => {
           placeholder="Enter product price"
           onChange={(e) => handleInput(e)}
         />
-        {error && !formData.price && (
-          <span className="err-text">Enter Valid Price</span>
-        )}
+        {error && !price && <span className="err-text">Enter Valid Price</span>}
         <input
           className="inputField"
           name="category"
@@ -81,7 +78,7 @@ const AddProduct = () => {
           placeholder="Enter product category"
           onChange={(e) => handleInput(e)}
         />
-        {error && !formData.category && (
+        {error && !category && (
           <span className="err-text">Enter Valid Category</span>
         )}
         <input
@@ -91,10 +88,18 @@ const AddProduct = () => {
           placeholder="Enter product company"
           onChange={(e) => handleInput(e)}
         />
-        {error && !formData.company && (
+        {error && !company && (
           <span className="err-text">Enter Valid Company</span>
         )}
-        <button className="signUpBtn" onClick={handleAddProduct}>
+        <button
+          className="signUpBtn"
+          onClick={handleAddProduct}
+          disabled={!name || !price || !category || !company}
+          style={{
+            backgroundColor:
+              !name || !price || !category || !company ? "gray" : "",
+          }}
+        >
           Add Product
         </button>
       </div>

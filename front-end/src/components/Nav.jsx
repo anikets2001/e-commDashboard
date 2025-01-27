@@ -5,7 +5,7 @@ import logo from "../images/logo.jpg";
 const Nav = () => {
   const navigate = useNavigate;
   const auth = localStorage.getItem("user");
-  const { name } = JSON.parse(auth) ?? "Guest";
+  const { name } = JSON.parse(auth) ?? { name: "Guest" };
 
   const handleLogout = () => {
     localStorage.clear();
@@ -28,9 +28,6 @@ const Nav = () => {
           </Link>
           <Link to={"/addProduct"} className="navItem">
             Add Product
-          </Link>
-          <Link to={"/update"} className="navItem">
-            Update Product
           </Link>
           <Link to={"/profile"} className="navItem">
             Profile
