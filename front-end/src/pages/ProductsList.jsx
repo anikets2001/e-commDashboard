@@ -23,17 +23,34 @@ const ProductsList = () => {
 
   const handleDelete = async (id) => {
     let response = await fetch(`http://localhost:5000/deleteProduct/${id}`, {
-      method: "Delete",
+      method: "DELETE",
     });
     response = await response.json();
-    setDeleteProduct(true);
+    setDeleteProduct(id);
 
     if (response) {
       alert("Product deleted successfully");
     }
   };
+
+  const handleSearch = async (e) => {
+    const key = e.target.value;
+    if (key) {
+      let response = await fetch(`http://localhost:5000/search/${key}`);
+      let result = await response.json();
+      if (result) {
+        setProductsList(result);
+      }
+    } else {
+      getProducts();
+    }
+  };
+
   return (
     <div className="products-wrapper">
+      <div className="search-wrapper">
+        <input type="search" placeholder="Search..." onChange={handleSearch} />
+      </div>
       {productsList?.length > 0 ? (
         <table className="products-table">
           <thead>

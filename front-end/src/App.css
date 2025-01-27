@@ -73,7 +73,7 @@
 
 /*--- styles for product list page start ---*/
 .products-wrapper {
-  padding: 16;
+  padding: 16px;
 }
 .products-table {
   width: 100%;
@@ -150,6 +150,14 @@
   background-color: rgb(171, 171, 235);
   color:  #1c51a1;
   cursor: pointer;
+}
+
+.search-wrapper input {
+  padding: 8px;
+  border-radius: 8px;
+  outline: none;
+  border: 1px solid gray;
+  font-size: 16px;
 }
 
 /*--- styles for product list page end ---*/
