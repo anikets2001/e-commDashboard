@@ -45,26 +45,26 @@ app.post("/login", async (req, res) => {
 });
 
 // api for add product
-app.post("/addProduct", async (req, res) => {
+app.post("/addProduct", verifyToken, async (req, res) => {
   const product = new Product(req.body);
   const result = await product.save();
   res.send(result);
 });
 
 // api for product list
-app.get("/products", async (_, res) => {
+app.get("/products", verifyToken, async (_, res) => {
   const response = await Product.find();
   res.send(response);
 });
 
 // api for delete product
-app.delete("/deleteProduct/:id", async (req, res) => {
+app.delete("/deleteProduct/:id", verifyToken, async (req, res) => {
   const result = await Product.deleteOne({ _id: req.params.id });
   res.send(result);
 });
 
 // api for get single product
-app.get("/product/:id", async (req, res) => {
+app.get("/product/:id", verifyToken, async (req, res) => {
   const result = await Product.findOne({ _id: req.params.id });
   if (result) {
     res.send(result);
@@ -74,7 +74,7 @@ app.get("/product/:id", async (req, res) => {
 });
 
 // api for update product
-app.put("/updateProduct/:id", async (req, res) => {
+app.put("/updateProduct/:id", verifyToken, async (req, res) => {
   const result = await Product.updateOne(
     {
       _id: req.params.id,
@@ -87,7 +87,7 @@ app.put("/updateProduct/:id", async (req, res) => {
 });
 
 // api for search product
-app.get("/search/:key", async (req, res) => {
+app.get("/search/:key", verifyToken, async (req, res) => {
   const searchKey = req.params.key;
 
   const result = await Product.find({
@@ -101,6 +101,23 @@ app.get("/search/:key", async (req, res) => {
 
   res.send(result);
 });
+
+// middleware for verity token (it must be a regular function not arrow function)
+function verifyToken(req, res, next) {
+  let token = req.headers["authorization"]; //this should be lowercase
+  if (token) {
+    token = token.split(" ")[1];
+    jwt.verify(token, jwtKey, (err, valid) => {
+      if (err) {
+        res.status(401).send({ result: "Please provide valid token" });
+      } else {
+        next();
+      }
+    });
+  } else {
+    res.status(403).send({ result: "Please add token with header" });
+  }
+}
 
 app.listen(5000, () => {
   console.log("starting server....");
