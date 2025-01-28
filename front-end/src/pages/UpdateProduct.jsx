@@ -8,7 +8,11 @@ const UpdateProduct = () => {
 
   const getProduct = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/product/${id}`);
+      const response = await fetch(`http://localhost:5000/product/${id}`, {
+        headers: {
+          authorization: `bearer ${JSON.parse(localStorage.getItem("token"))}`,
+        },
+      });
       const item = await response.json();
       setProduct(item);
     } catch (err) {
@@ -33,6 +37,9 @@ const UpdateProduct = () => {
           method: "Put",
           headers: {
             "Content-Type": "application/json",
+            authorization: `bearer ${JSON.parse(
+              localStorage.getItem("token")
+            )}`,
           },
           body: JSON.stringify(product),
         }

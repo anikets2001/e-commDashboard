@@ -24,7 +24,7 @@ const SignUp = () => {
       navigate("/");
       return <h1>You are already signed In</h1>;
     }
-  },[]);
+  }, []);
 
   const handleInput = (e) => {
     let { name, value } = e.target;
