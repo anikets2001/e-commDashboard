@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { userLoggedIn } from "../redux/features/common/commonSlice";
 
 const Login = () => {
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
@@ -36,7 +40,7 @@ const Login = () => {
     if (result.auth) {
       localStorage.setItem("user", JSON.stringify(result.user));
       localStorage.setItem("token", JSON.stringify(result.auth));
-
+      dispatch(userLoggedIn(true));
       navigate("/");
     } else {
       alert("Please enter correct details");
