@@ -1,17 +1,10 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../images/logo.jpg";
 import { useSelector } from "react-redux";
+import profile from '../images/profile.jpg'
 
 const Nav = () => {
   const isLoggedIn = useSelector((state) => state.loggedIn.status);
-  const navigate = useNavigate;
-  const auth = localStorage.getItem("user");
-  const { name } = JSON.parse(auth) ?? { name: "Guest" };
-
-  const handleLogout = () => {
-    localStorage.clear();
-    navigate("/signUp");
-  };
 
   return (
     <div className="navWrapper">
@@ -31,10 +24,13 @@ const Nav = () => {
             Add Product
           </Link>
           <Link to={"/profile"} className="navItem">
-            Profile
-          </Link>
-          <Link to={"/signUp"} className="navItem" onClick={handleLogout}>
-            Logout ({name})
+            <img
+              src={profile}
+              alt="profile pic"
+              width={40}
+              height={40}
+              style={{ borderRadius: "50%" }}
+            />
           </Link>
         </>
       ) : (

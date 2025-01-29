@@ -109,6 +109,15 @@
   cursor: pointer;
 }
 
+.logout-btn {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: red;
+  cursor: pointer;
+  font-size: 24px;
+}
+
 .delete-btn .icon-btn {
   color: red;
   font-size: 24px;
@@ -148,7 +157,7 @@
   border: none;
   outline: none;
   background-color: rgb(171, 171, 235);
-  color:  #1c51a1;
+  color: #1c51a1;
   cursor: pointer;
 }
 
@@ -159,5 +168,72 @@
   border: 1px solid gray;
   font-size: 16px;
 }
-
 /*--- styles for product list page end ---*/
+
+/* --- style for profile page start--- */
+.profile-container {
+  width: 80%;
+  background: white;
+  margin:24px auto 0px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-info {
+  text-align: center;
+  padding: 50px 20px 20px;
+}
+
+.profile-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.profile-detail {
+  color: gray;
+  font-size: 14px;
+}
+
+.settings-section {
+  border-top: 1px solid #eee;
+}
+
+.settings-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+
+.settings-item:last-child {
+  border-bottom: none;
+}
+
+.toggle-switch {
+  width: 40px;
+  height: 20px;
+  background: #ccc;
+  border-radius: 20px;
+  position: relative;
+  display: inline-block;
+}
+
+.toggle-thumb {
+  width: 16px;
+  height: 16px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: 0.3s;
+}
+
+.profile-pic {
+  height: 100px;
+  width: 100px;
+}
+
+/* ---- styles for profile page end ---- */
