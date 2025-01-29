@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { userLoggedIn } from "../redux/features/common/commonSlice";
 
 const SignUp = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
@@ -48,7 +51,7 @@ const SignUp = () => {
       const result = await response.json();
       localStorage.setItem("user", JSON.stringify(result.result));
       localStorage.setItem("token", JSON.stringify(result.auth));
-
+      dispatch(userLoggedIn(true));
       if (result) {
         navigate("/");
       }

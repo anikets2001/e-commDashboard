@@ -1,8 +1,9 @@
-import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../images/logo.jpg";
+import { useSelector } from "react-redux";
 
 const Nav = () => {
+  const isLoggedIn = useSelector((state) => state.loggedIn.status);
   const navigate = useNavigate;
   const auth = localStorage.getItem("user");
   const { name } = JSON.parse(auth) ?? { name: "Guest" };
@@ -14,7 +15,7 @@ const Nav = () => {
 
   return (
     <div className="navWrapper">
-      {auth ? (
+      {isLoggedIn ? (
         <>
           <img
             src={logo}

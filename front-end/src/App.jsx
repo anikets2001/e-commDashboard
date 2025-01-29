@@ -1,5 +1,4 @@
 import "./App.css";
-import React from "react";
 import Nav from "./components/Nav";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Footer from "./components/Footer";
@@ -9,10 +8,12 @@ import Login from "./components/Login";
 import AddProduct from "./pages/AddProduct";
 import ProductsList from "./pages/ProductsList";
 import UpdateProduct from "./pages/UpdateProduct";
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
 
 const App = () => {
   return (
-    <div>
+    <Provider store={store}>
       <BrowserRouter>
         <Nav />
         <Routes>
@@ -28,7 +29,7 @@ const App = () => {
         </Routes>
         <Footer />
       </BrowserRouter>
-    </div>
+    </Provider>
   );
 };
 
