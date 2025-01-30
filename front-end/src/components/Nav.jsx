@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import profile from '../images/profile.jpg'
 
 const Nav = () => {
-  const isLoggedIn = useSelector((state) => state.loggedIn.status);
+  const isLoggedIn = useSelector((state) => state.common.status);
 
   return (
     <div className="navWrapper">
