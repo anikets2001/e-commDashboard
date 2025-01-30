@@ -236,4 +236,14 @@
   width: 100px;
 }
 
+.theme-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.theme-icon {
+  font-size: 24px;
+}
+
 /* ---- styles for profile page end ---- */

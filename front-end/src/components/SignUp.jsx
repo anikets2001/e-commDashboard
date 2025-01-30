@@ -25,7 +25,7 @@ const SignUp = () => {
 
     if (auth) {
       navigate("/");
-      return <h1>You are already signed In</h1>;
+      // return <h1>You are already signed In</h1>;
     }
   }, []);
 
@@ -51,7 +51,6 @@ const SignUp = () => {
       const result = await response.json();
       localStorage.setItem("user", JSON.stringify(result.result));
       localStorage.setItem("token", JSON.stringify(result.auth));
-      dispatch(userLoggedIn(true));
       if (result) {
         navigate("/");
       }

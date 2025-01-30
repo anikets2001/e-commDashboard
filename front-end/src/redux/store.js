@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import loginReducer from "./features/common/commonSlice";
+import commonReducer from "./features/common/commonSlice";
 
 export const store = configureStore({
   reducer: {
-    loggedIn: loginReducer,
+    common: commonReducer,
   },
 });
