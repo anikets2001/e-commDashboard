@@ -18,7 +18,7 @@ const AddProduct = () => {
   };
 
   const handleAddProduct = async () => {
-    // form validation
+    // form validation (required fields)
     if (!name || !price || !category || !company) {
       setError(true);
       return;
