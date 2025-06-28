@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
 import { MdDeleteForever, MdModeEdit } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import useDebounce from "./useDebounce"; 
 
 const ProductsList = () => {
   const navigate = useNavigate();
   const [productsList, setProductsList] = useState([]);
   const [deleteProduct, setDeleteProduct] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const debouncedSearch = useDebounce(searchTerm, 500); 
 
   const getProducts = async () => {
     try {
@@ -25,6 +29,24 @@ const ProductsList = () => {
     getProducts();
   }, [deleteProduct]);
 
+  useEffect(() => {
+    const handleSearch = async () => {
+      if (debouncedSearch) {
+        let response = await fetch(`http://localhost:5000/search/${debouncedSearch}`, {
+          headers: {
+            authorization: `bearer ${JSON.parse(localStorage.getItem("token"))}`,
+          },
+        });
+        let result = await response.json();
+        setProductsList(result);
+      } else {
+        getProducts();
+      }
+    };
+
+    handleSearch();
+  }, [debouncedSearch]); 
+
   const handleDelete = async (id) => {
     let response = await fetch(`http://localhost:5000/deleteProduct/${id}`, {
       method: "DELETE",
@@ -40,27 +62,15 @@ const ProductsList = () => {
     }
   };
 
-  const handleSearch = async (e) => {
-    const key = e.target.value;
-    if (key) {
-      let response = await fetch(`http://localhost:5000/search/${key}`, {
-        headers: {
-          authorization: `bearer ${JSON.parse(localStorage.getItem("token"))}`,
-        },
-      });
-      let result = await response.json();
-      if (result) {
-        setProductsList(result);
-      }
-    } else {
-      getProducts();
-    }
-  };
-
   return (
     <div className="products-wrapper">
       <div className="search-wrapper">
-        <input type="search" placeholder="Search..." onChange={handleSearch} />
+        <input
+          type="search"
+          placeholder="Search..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
       </div>
       {productsList?.length > 0 ? (
         <table className="products-table">
